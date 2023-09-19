@@ -136,7 +136,8 @@ def show_main(request):
         'Nama': 'Muhammad Mariozulfandy',
         'Kelas': 'PBP C',
         'Aplikasi': 'Book List',
-        'items': items
+        'items': items,
+        'jumlah_items': jumlah_items
     }
 
     return render(request, "main.html", context)
