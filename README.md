@@ -1,4 +1,7 @@
-# Tugas 3
+<details>
+    <summary>
+        # Tugas 3
+    </summary>
 
 Nama      : Muhammad Mariozulfandy
 
@@ -202,8 +205,13 @@ path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), #Menambahkan va
 ![image](https://github.com/riozulfandy/book_list/assets/119402060/81fa8968-480b-4850-9a15-a8b763b3990d)
 ![image](https://github.com/riozulfandy/book_list/assets/119402060/8a401078-e000-4f14-bfaf-fb73000ce73e)
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Tugas 2
+</details>
+
+<details>
+    <summary>
+       # Tugas 2
+    </summary>
+
 
 Nama      : Muhammad Mariozulfandy
 
@@ -273,6 +281,7 @@ Perbedaaan utamanya adalah bagaimana mereka mengatur dan memisahkan tanggung jaw
 
 -MVC adalah pola yang banyak digunakan yang dengan jelas memisahkan Model, View, dan Controller. Controller bertindak sebagai jembatan antara Model dan View.
 
+</details>
 -MVT adalah variasi dari MVC yang digunakan dalam kerangka web Django. Ini menggantikan Controller dengan Template, yang lebih fokus pada logika presentasi data dalam format tampilan HTML.
 
 -MVVM adalah pola yang mendominasi pengembangan aplikasi berbasis data. ViewModel mengambil peran yang lebih kuat dalam mengelola UI dan memastikan bahwa View selalu mencerminkan data yang benar dari Model. Hal ini memungkinkan pemisahan yang kuat antara logika aplikasi (Model), lapisan presentasi (View), dan logika presentasi (ViewModel).
