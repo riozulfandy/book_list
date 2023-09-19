@@ -193,7 +193,9 @@ path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), #Menambahkan va
 ```
 
 5. Mengakses kelima URL di nomor 4c menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+
 =
+
 ![image](https://github.com/riozulfandy/book_list/assets/119402060/7e89a743-9053-45ec-a97c-9b6ae53ff67e)
 ![image](https://github.com/riozulfandy/book_list/assets/119402060/1039fcbc-5947-4f04-93eb-b8cae4a2c44b)
 ![image](https://github.com/riozulfandy/book_list/assets/119402060/333440c8-0c83-4a22-a92f-121c47c4d0be)
