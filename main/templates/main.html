@@ -1,8 +1,44 @@
-<h1>Book List Page</h1>
+{% extends 'base.html' %}
 
-<h5>Nama: </h5>
-<p>{{ Nama }}<p>
-<h5>Kelas: </h5>
-<p>{{ Kelas }}<p>
-<h5>Nama Aplikasi: </h5>
-<p>{{ Aplikasi }}<p>
+{% block content %}
+    <h1>Book List Page</h1>
+
+    <h5>Nama:</h5>
+    <p>{{Nama}}</p>
+
+    <h5>Kelas:</h5>
+    <p>{{Kelas}}</p>
+
+    <h5>Nama Aplikasi:</h5>
+    <p>{{Aplikasi}}</p>
+
+    <h5>Kamu menyimpan {{jumlah_items}} item pada aplikasi ini.</h5>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Date Added</th>
+        </tr>
+    
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    
+        {% for item in items %}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.date_added}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br />
+    
+    <a href="{% url 'main:create_item' %}">
+        <button>
+            Add New Item
+        </button>
+    </a>
+{% endblock content %}
