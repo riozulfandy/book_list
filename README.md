@@ -1,10 +1,203 @@
+# Tugas 3
+
 Nama      : Muhammad Mariozulfandy
 
 NPM       : 2206041404
 
 Kelas     : PBP C
 
-Aplikasi  : https://booklist.adaptable.app/main/
+Aplikasi  : Book List
+
+1. Apa perbedaan antara form POST dan form GET dalam Django?
+
+= GET digunakan untuk membaca/mengambil data dari server web. GET mengembalikan kode status HTTP 200 (OK) jika data berhasil diambil dari server. Sementara POST digunakan untuk mengirim data (file, data form, dll) ke server. Jika pembuatan berhasil, ia mengembalikan kode status HTTP 201. Berikut beberapa perbedaannya:
+
+POST:
+
+-Nilai variabel tidak ditampilkan di URL
+
+-Lebih aman
+
+-Tidak dibatasi panjang string
+
+-Pengambilan variabel dengan request.POST.get
+
+-Biasanya untuk input data melalui form
+
+-Digunakan untuk mengirim data-data penting seperti password
+
+GET:
+
+-Nilai variabel ditampilkan di URL sehingga user dapat dengan mudah memasukkan nilai variabel baru
+
+-Kurang aman
+
+-Dibatasi panjang string sampai 2047 karakter
+
+-Pengambilan variabel dengan request.POST.get
+
+-Biasanya untuk input data melalui link
+
+-Digunakan untuk mengirim data-data tidak penting
+
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+
+= XML adalah bahasa markup yang sangat fleksibel dan dapat digunakan untuk mendefinisikan struktur data yang kompleks. Ini menggunakan tag yang dapat disesuaikan oleh pengguna untuk mendefinisikan elemen data dan hierarki. JSON adalah format data ringkas yang berbasis teks dan memiliki struktur yang mirip dengan objek JavaScript. Ini terdiri dari pasangan nama-nilai (key-value pairs). HTML adalah bahasa markup yang digunakan untuk membuat halaman web. Ini memiliki struktur yang lebih terbatas dan dirancang untuk menampilkan konten dalam bentuk halaman web. Perbedaan utama diantaranya adalah XML digunakan untuk mendefinisikan struktur data yang kompleks, JSON digunakan untuk pertukaran data dalam format ringkas, sedangkan HTML digunakan untuk membuat halaman web dan menampilkan konten. 
+
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+
+= JSON adalah format data yang ringkas dan mudah dibaca oleh programmer dalam bentuk (key-value pairs). JSON bagian integral dari JavaScript, sehingga memudahkan penggunaannya dalam lingkungan pengembangan web yang berbasis JavaScript. JSON juga mendukung struktur data yang bersarang (nested), yang memungkinkan representasi data yang kompleks dan hierarkis. Selain itu, format data JSON yang ringan dalam hal ukuran. Ini menghasilkan overhead yang lebih rendah dalam pertukaran data antara klien dan server, yang dapat meningkatkan kinerja dan kecepatan dalam aplikasi web.
+
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+= 
+
+**a. Membuat input form untuk menambahkan objek model (item) pada app sebelumnya.**
+
+- Membuat file baru dengan nama forms.py pada aplikasi main untuk membuat struktur form yang dapat menerima data baru.
+
+```python
+from django.forms import ModelForm
+from main.models import Item
+
+class ItemForm(ModelForm):
+    class Meta:
+        model = Item
+        fields = ["name", "amount", "description"]
+```
+
+Item merupakan model yang digunakan untuk form (yang telah dibuat pada Tugas 1). Ketika data dari form disimpan, isi dari form akan disimpan menjadi sebuah objek class Item. Fields berisi field dari model Item yang digunakan untuk form.
+
+- Membuat template HTML baru bernama create_item.html untuk menampilkan form untuk membuat item baru.
+
+```html
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Add New Item</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Add Item"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+```
+
+
+- Import beberapa package dan membuat fungsi baru dengan nama create_item yang menerima parameter request untuk membuat form yang membuat objek item baru.
+
+```python
+from django.http import HttpResponseRedirect
+from main.forms import ItemForm
+from django.urls import reverse
+```
+```python
+def create_item(request):
+    form = ItemForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    context = {'form': form}
+    return render(request, "create_item.html", context)
+```
+Melakukan render tampilan template create_item.html kemudian membuat objek ItemForm berdasarkan QueryDict yang diinput user, dilakukan validasi, disimpan, dan redirect ke page main.
+
+- Menambahkan button pada main.html yang mengarah url dari fungsi create_item pada view yang telah dibuat untuk membuat form.
+```html
+    <a href="{% url 'main:create_item' %}">
+        <button>
+            Add New Item
+        </button>
+    </a>
+```
+
+- Membuat routing url pada urls.py yang mengarah ke fungsi create_item untuk pembuatan form. Dengan menambahkan ```path('create-item', create_item, name='create_item')``` pada list urlpatterns.
+
+**b. Menambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.**
+
+- Melihat objek yang sudah ditambahkan dalam format HTML dilakukan dengan memperbarui fungsi show_main dengan menambahkan setiap objek Ttem yang sudah ditambahkan sebelumnya. Karena show_main melakukan render terhadap main.html, main.html juga diperbarui dengan menambahkan tabel yang berisi setiap atribut dari objek Item yang telah dibuat sebelumnya (name, amount, description, date_added).
+
+```python
+def show_main(request):
+    items = Item.objects.all()
+
+    context = {
+        'Nama': 'Muhammad Mariozulfandy',
+        'Kelas': 'PBP C',
+        'Aplikasi': 'Book List',
+        'items': items
+    }
+
+    return render(request, "main.html", context)
+```
+```html
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date Added</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for item in items %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.amount}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.date_added}}</td>
+        </tr>
+    {% endfor %}
+</table>
+```
+
+- Melihat objek yang sudah ditambahkan dalam format XML, JSON, JSON by ID, dan XML by ID dilakukan dengan memanfaatkan ```django.core.serializers``` untuk transformasi data menjadi format lain seperti XML dan JSON. Untuk XML dan JSON, data yang ditransformasi adalah semua objek pada Item yang telah ditambahkan sebelumnya. Sementara JSON by ID dan XML by ID, data yang ditransformasi adalah data dengan ID yang ditetapkan. Implementasi dilakukan dengan menambahkan fungsi show_xml dan show_json yang menerima parameter request dan show_xml_by_id dan show_json_by_id yang menerima parameter request dan ID.
+```python
+def show_xml(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+def show_json(request):
+    data = Item.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+def show_xml_by_id(request, id):
+    data = Item.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+def show_json_by_id(request, id):
+    data = Item.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+**c. Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin b.**
+
+Ini dilakukan dengan menambahkan path pada list urlpatterns di urls.py untuk masing-masing fungsi views yang telah dibuat.
+```python
+path('xml/', show_xml, name='show_xml'),
+path('json/', show_json, name='show_json'),
+path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'), #Menambahkan variabel id karena dipakai sebagai parameter
+path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), #Menambahkan variabel id karena dipakai sebagai parameter
+```
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Tugas 2
+
+Nama      : Muhammad Mariozulfandy
+
+NPM       : 2206041404
+
+Kelas     : PBP C
+
+Aplikasi  : Book List
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
