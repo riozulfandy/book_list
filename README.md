@@ -125,11 +125,12 @@ Melakukan render tampilan template create_item.html kemudian membuat objek ItemF
 
 **b. Menambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.**
 
-- Melihat objek yang sudah ditambahkan dalam format HTML dilakukan dengan memperbarui fungsi show_main dengan menambahkan setiap objek Item yang sudah ditambahkan sebelumnya untuk dirender. Karena show_main melakukan render terhadap main.html, main.html juga diperbarui dengan menambahkan tabel yang berisi setiap atribut dari setiap objek Item yang telah dibuat sebelumnya (name, amount, description, date_added).
+- Melihat objek yang sudah ditambahkan dalam format HTML dilakukan dengan memperbarui fungsi show_main dengan menambahkan setiap objek Item yang sudah ditambahkan sebelumnya untuk dirender serta jumlah dari objek Item yang sudah ditambahkan sebelumnya. Karena show_main melakukan render terhadap main.html, main.html juga diperbarui dengan menambahkan tabel yang berisi setiap atribut dari setiap objek Item yang telah dibuat sebelumnya (name, amount, description, date_added) dan jumlah dari objek yang ditambahkan sebelumnya.
 
 ```python
 def show_main(request):
     items = Item.objects.all()
+    jumlah_items = Item.objects.all().count()
 
     context = {
         'Nama': 'Muhammad Mariozulfandy',
@@ -141,6 +142,8 @@ def show_main(request):
     return render(request, "main.html", context)
 ```
 ```html
+<h5>Kamu menyimpan {{jumlah_items}} item pada aplikasi ini.</h5>
+
 <table>
     <tr>
         <th>Name</th>
