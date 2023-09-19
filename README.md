@@ -125,7 +125,7 @@ Melakukan render tampilan template create_item.html kemudian membuat objek ItemF
 
 **b. Menambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.**
 
-- Melihat objek yang sudah ditambahkan dalam format HTML dilakukan dengan memperbarui fungsi show_main dengan menambahkan setiap objek Ttem yang sudah ditambahkan sebelumnya. Karena show_main melakukan render terhadap main.html, main.html juga diperbarui dengan menambahkan tabel yang berisi setiap atribut dari objek Item yang telah dibuat sebelumnya (name, amount, description, date_added).
+- Melihat objek yang sudah ditambahkan dalam format HTML dilakukan dengan memperbarui fungsi show_main dengan menambahkan setiap objek Item yang sudah ditambahkan sebelumnya untuk dirender. Karena show_main melakukan render terhadap main.html, main.html juga diperbarui dengan menambahkan tabel yang berisi setiap atribut dari setiap objek Item yang telah dibuat sebelumnya (name, amount, description, date_added).
 
 ```python
 def show_main(request):
@@ -162,7 +162,7 @@ def show_main(request):
 </table>
 ```
 
-- Melihat objek yang sudah ditambahkan dalam format XML, JSON, JSON by ID, dan XML by ID dilakukan dengan memanfaatkan ```django.core.serializers``` untuk transformasi data menjadi format lain seperti XML dan JSON. Untuk XML dan JSON, data yang ditransformasi adalah semua objek pada Item yang telah ditambahkan sebelumnya. Sementara JSON by ID dan XML by ID, data yang ditransformasi adalah data dengan ID yang ditetapkan. Implementasi dilakukan dengan menambahkan fungsi show_xml dan show_json yang menerima parameter request dan show_xml_by_id dan show_json_by_id yang menerima parameter request dan ID.
+- Melihat objek yang sudah ditambahkan dalam format XML, JSON, JSON by ID, dan XML by ID dilakukan dengan memanfaatkan ```django.core.serializers``` untuk transformasi data menjadi format lain seperti XML dan JSON. Untuk XML dan JSON, data yang ditransformasi adalah semua objek pada Item yang telah ditambahkan sebelumnya. Sementara JSON by ID dan XML by ID, data yang ditransformasi adalah data dengan ID yang ditetapkan (dilakukan filtering). Implementasi dilakukan dengan menambahkan fungsi show_xml dan show_json yang menerima parameter request dan show_xml_by_id dan show_json_by_id yang menerima parameter request dan ID.
 ```python
 def show_xml(request):
     data = Item.objects.all()
