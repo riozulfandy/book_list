@@ -3,6 +3,9 @@
 {% block content %}
     <h1>Book List Page</h1>
 
+    <h5>Username:</h5>
+    <p>{{Username}}</p>
+
     <h5>Nama:</h5>
     <p>{{Nama}}</p>
 
@@ -34,11 +37,18 @@
         {% endfor %}
     </table>
     
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
     <br />
     
     <a href="{% url 'main:create_item' %}">
         <button>
             Add New Item
+        </button>
+    </a>
+
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
         </button>
     </a>
 {% endblock content %}
