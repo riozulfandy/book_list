@@ -86,7 +86,11 @@ urlpatterns = [
 
 Implementasi:
 
-Saat membuka halaman utama web, akan diperlukan login (autentikasi) sehingga mengarah ke halaman login. Di halaman login dapat menekan tombol ```Register Now``` untuk mengarah ke halaman register. Membuat akun dengan username (riozulfandy), passsword, dan konfirmasi password. Dilakukan hal yang sama untuk akun kedua dengan username (riozulfandy2). Pada masing-masing akun, ditambahakan tiga objek model data (Item) dengan fitur fungsi pembuatan objek pada form yang  yang sudah dibuat sebelumnya. Saat ini, setiap objek Item memiliki empat atribut (nama, jumlah, deskripsi, tanggal ditambahkan). Karena konteks website ini (Book List) adalah list buku, maka atribut objek yang diisi dengan nama, deskripsi, dan jumlah buku.
+Saat membuka halaman utama web, akan diperlukan login (autentikasi) sehingga mengarah ke halaman login. Di halaman login dapat menekan tombol ```Register Now``` untuk mengarah ke halaman register. Membuat akun dengan username (riozulfandy), passsword, dan konfirmasi password. Dilakukan hal yang sama untuk akun kedua dengan username (riozulfandy2). Pada masing-masing akun, ditambahakan tiga objek model data (Item) dengan fitur fungsi pembuatan objek pada form yang  yang sudah dibuat sebelumnya. Saat ini, setiap objek Item memiliki empat atribut (nama, jumlah, deskripsi, tanggal ditambahkan). Karena konteks website ini (Book List) adalah list buku, maka atribut objek yang diisi dengan nama, deskripsi, dan jumlah buku. Screenshot halaman main masing-masing akun:
+
+![Alt text](image.png)
+
+![Alt text](image-1.png)
 
 **c. Menghubungkan model Item dengan User.**
 
