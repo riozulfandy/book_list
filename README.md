@@ -1,5 +1,276 @@
 <details>
     <summary>
+        Tugas 5
+    </summary>
+
+Nama      : Muhammad Mariozulfandy
+
+NPM       : 2206041404
+
+Kelas     : PBP C
+
+Aplikasi  : Book List
+
+1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya!
+
+= Elemen Selector dalam CSS adalah metode pemilihan elemen berdasarkan nama elemen dalam dokumen HTML, seperti <p>, <h1>, atau <div>. Manfaat utama dari penggunaan element selector adalah kemampuannya untuk menerapkan gaya secara konsisten pada semua elemen dengan nama yang sama di seluruh halaman web. Hal ini berguna ketika kita ingin mengaplikasikan gaya dasar ke seluruh elemen dengan nama yang sama tanpa perlu menambahkan kelas atau ID tambahan. Element selector sebaiknya digunakan ketika konsistensi tampilan elemen-elemen tersebut adalah prioritas utama dalam desain halaman web.
+
+2. Jelaskan HTML5 Tag yang kamu ketahui!
+
+= HTML5 adalah versi terbaru dari bahasa markup HTML yang menawarkan tag-tag baru untuk menggambarkan struktur dan makna dari konten dalam dokumen HTML. Beberapa tag HTML5 yang umum digunakan antara lain:
+
+<header>: Digunakan untuk bagian kepala dokumen atau bagian dari sebuah situs web.
+<nav>: Untuk menyusun menu navigasi.
+<section>: Mengelompokkan konten yang terkait dalam sebuah bagian.
+<article>: Menandai konten yang dapat berdiri sendiri, seperti posting blog atau berita.
+<footer>: Bagian bawah dari dokumen atau elemen tertentu.
+<video>: Digunakan untuk menampilkan video. Tag-tag ini membantu meningkatkan struktur dan semantik dalam dokumen HTML.
+
+3. Jelaskan perbedaan antara margin dan padding!
+
+= Margin dan padding adalah dua properti CSS yang digunakan untuk mengatur ruang di sekitar elemen. Margin mengatur ruang di luar elemen dan mempengaruhi jarak antara elemen dengan elemen lainnya. Di sisi lain, padding mengatur ruang di dalam elemen dan mempengaruhi jarak antara konten elemen dan batas elemen tersebut. Ini berarti bahwa margin mempengaruhi ruang antara elemen dan elemen lain di sekitarnya, sedangkan padding mempengaruhi ruang antara konten elemen dan batas elemen itu sendiri.
+
+4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap! Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+= Bootstrap dan Tailwind CSS adalah dua alat yang berbeda untuk membangun tampilan situs web. Bootstrap menyediakan berbagai komponen yang sudah didesain dan siap pakai, sehingga memungkinkan kita membuat situs dengan cepat tanpa harus membuat banyak kode CSS kustom. Di sisi lain, Tailwind CSS memberikan banyak utilitas CSS yang lebih dasar yang memungkinkan kita membuat tampilan yang lebih unik sesuai kebutuhan. Ketika kita perlu membuat situs dengan cepat menggunakan komponen siap pakai, Bootstrap bisa menjadi pilihan yang baik. Sementara itu, jika kita ingin lebih banyak kontrol dan kreativitas dalam desain tampilan, Tailwind bisa lebih cocok. Pilihannya tergantung pada kebutuhan proyek masing-masing.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+= **a. Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.**
+
+- Didalam base.html, tambahkan tag <meta name="viewport"> agar halaman web dapat menyesuaikan ukuran dan perilaku perangkat mobile.
+```html
+<head>
+    {% block meta %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+</head>
+```
+
+- Menambahkan Bootstrap CSS, JS, dan jQuery.
+```html
+<head>
+    ...
+    {% endblock meta %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+```
+
+- Kustomisasi halaman login ```login.html```, register ```register.html```, dan penambahan item ```create_item.html``` dengan penggunaan warna dan card.
+
+login:
+```html
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Login</div>
+                <div class="card-body">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" name="username" id="username" placeholder="Username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Login</button>
+                        </div>
+                    </form>
+                    {% if messages %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <p class="text-center">Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+```
+register:
+```html
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Register</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8"> <!-- Increase the column size to 8 -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Register
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            {{ form.as_p }}
+                        </div>
+                        
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary btn-block" type="submit" name="submit">
+                                Daftar
+                            </button>
+                        </div>
+                    </form>
+                    
+                    {% if messages %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+```
+
+create_item:
+```html
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Add New Item</div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.as_p }}
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">Add Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+```
+**b. Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan approach lain seperti menggunakan Card.**
+
+- Melakukan kustomisasi halaman daftar item ```main.html``` menjadi lebih berwarna dan menggunakan approach Card agar mirip dengan halaman login, register, dan create_item.
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-20">
+                <div class="card w-100">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Book List</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-info">
+                            <h5>Username:</h5>
+                            <p>{{ Username }}</p>
+
+                            <h5>Nama:</h5>
+                            <p>{{ Nama }}</p>
+
+                            <h5>Kelas:</h5>
+                            <p>{{ Kelas }}</p>
+
+                            <h5>Nama Aplikasi:</h5>
+                            <p>{{ Aplikasi }}</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="item-count">
+                            <h5 class="text-info">Kamu menyimpan {{ jumlah_items }} item pada aplikasi ini.</h5>
+                        </div>
+
+                        <hr>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Description</th>
+                                        <th>Date Added</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr>
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.amount }}</td>
+                                        <td>{{ item.description }}</td>
+                                        <td>{{ item.date_added }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h5 class="text-success">Sesi terakhir login: {{ last_login }}</h5>
+
+                        <hr>
+
+                        <div class="button-container">
+                            <a href="{% url 'main:create_item' %}" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Add New Item
+                            </a>
+
+                            <a href="{% url 'main:logout' %}" class="btn btn-danger">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+```
+
+</details>
+
+<details>
+    <summary>
         Tugas 4
     </summary>
 

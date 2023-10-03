@@ -1,54 +1,77 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Book List Page</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-20">
+                <div class="card w-100">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Book List</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-info">
+                            <h5>Username:</h5>
+                            <p>{{ Username }}</p>
 
-    <h5>Username:</h5>
-    <p>{{Username}}</p>
+                            <h5>Nama:</h5>
+                            <p>{{ Nama }}</p>
 
-    <h5>Nama:</h5>
-    <p>{{Nama}}</p>
+                            <h5>Kelas:</h5>
+                            <p>{{ Kelas }}</p>
 
-    <h5>Kelas:</h5>
-    <p>{{Kelas}}</p>
+                            <h5>Nama Aplikasi:</h5>
+                            <p>{{ Aplikasi }}</p>
+                        </div>
 
-    <h5>Nama Aplikasi:</h5>
-    <p>{{Aplikasi}}</p>
+                        <hr>
 
-    <h5>Kamu menyimpan {{jumlah_items}} item pada aplikasi ini.</h5>
+                        <div class="item-count">
+                            <h5 class="text-info">Kamu menyimpan {{ jumlah_items }} item pada aplikasi ini.</h5>
+                        </div>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Date Added</th>
-        </tr>
-    
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-    
-        {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.date_added}}</td>
-            </tr>
-        {% endfor %}
-    </table>
-    
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-    <br />
-    
-    <a href="{% url 'main:create_item' %}">
-        <button>
-            Add New Item
-        </button>
-    </a>
+                        <hr>
 
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Description</th>
+                                        <th>Date Added</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr>
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.amount }}</td>
+                                        <td>{{ item.description }}</td>
+                                        <td>{{ item.date_added }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr>
+
+                        <h5 class="text-success">Sesi terakhir login: {{ last_login }}</h5>
+
+                        <hr>
+
+                        <div class="button-container">
+                            <a href="{% url 'main:create_item' %}" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Add New Item
+                            </a>
+
+                            <a href="{% url 'main:logout' %}" class="btn btn-danger">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
