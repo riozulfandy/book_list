@@ -19,12 +19,12 @@ Aplikasi  : Book List
 
 = HTML5 adalah versi terbaru dari bahasa markup HTML yang menawarkan tag-tag baru untuk menggambarkan struktur dan makna dari konten dalam dokumen HTML. Beberapa tag HTML5 yang umum digunakan antara lain:
 
-```<header>```: Digunakan untuk bagian kepala dokumen atau bagian dari sebuah situs web.
-```<nav>```: Untuk menyusun menu navigasi.
-```<section>```: Mengelompokkan konten yang terkait dalam sebuah bagian.
-```<article>```: Menandai konten yang dapat berdiri sendiri, seperti posting blog atau berita.
-```<footer>```: Bagian bawah dari dokumen atau elemen tertentu.
-```<video>```: Digunakan untuk menampilkan video. Tag-tag ini membantu meningkatkan struktur dan semantik dalam dokumen HTML.
+- ```<header>```: Digunakan untuk bagian kepala dokumen atau bagian dari sebuah situs web.
+- ```<nav>```: Untuk menyusun menu navigasi.
+- ```<section>```: Mengelompokkan konten yang terkait dalam sebuah bagian.
+- ```<article>```: Menandai konten yang dapat berdiri sendiri, seperti posting blog atau berita.
+- ```<footer>```: Bagian bawah dari dokumen atau elemen tertentu.
+- ```<video>```: Digunakan untuk menampilkan video. Tag-tag ini membantu meningkatkan struktur dan semantik dalam dokumen HTML.
 
 3. Jelaskan perbedaan antara margin dan padding!
 
