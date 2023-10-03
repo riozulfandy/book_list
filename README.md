@@ -13,18 +13,18 @@ Aplikasi  : Book List
 
 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya!
 
-= Elemen Selector dalam CSS adalah metode pemilihan elemen berdasarkan nama elemen dalam dokumen HTML, seperti <p>, <h1>, atau <div>. Manfaat utama dari penggunaan element selector adalah kemampuannya untuk menerapkan gaya secara konsisten pada semua elemen dengan nama yang sama di seluruh halaman web. Hal ini berguna ketika kita ingin mengaplikasikan gaya dasar ke seluruh elemen dengan nama yang sama tanpa perlu menambahkan kelas atau ID tambahan. Element selector sebaiknya digunakan ketika konsistensi tampilan elemen-elemen tersebut adalah prioritas utama dalam desain halaman web.
+= Elemen Selector dalam CSS adalah metode pemilihan elemen berdasarkan nama elemen dalam dokumen HTML, seperti ```<p>```, ```<h1>```, atau ```<div>```. Manfaat utama dari penggunaan element selector adalah kemampuannya untuk menerapkan gaya secara konsisten pada semua elemen dengan nama yang sama di seluruh halaman web. Hal ini berguna ketika kita ingin mengaplikasikan gaya dasar ke seluruh elemen dengan nama yang sama tanpa perlu menambahkan kelas atau ID tambahan. Element selector sebaiknya digunakan ketika konsistensi tampilan elemen-elemen tersebut adalah prioritas utama dalam desain halaman web.
 
 2. Jelaskan HTML5 Tag yang kamu ketahui!
 
 = HTML5 adalah versi terbaru dari bahasa markup HTML yang menawarkan tag-tag baru untuk menggambarkan struktur dan makna dari konten dalam dokumen HTML. Beberapa tag HTML5 yang umum digunakan antara lain:
 
-<header>: Digunakan untuk bagian kepala dokumen atau bagian dari sebuah situs web.
-<nav>: Untuk menyusun menu navigasi.
-<section>: Mengelompokkan konten yang terkait dalam sebuah bagian.
-<article>: Menandai konten yang dapat berdiri sendiri, seperti posting blog atau berita.
-<footer>: Bagian bawah dari dokumen atau elemen tertentu.
-<video>: Digunakan untuk menampilkan video. Tag-tag ini membantu meningkatkan struktur dan semantik dalam dokumen HTML.
+```<header>```: Digunakan untuk bagian kepala dokumen atau bagian dari sebuah situs web.
+```<nav>```: Untuk menyusun menu navigasi.
+```<section>```: Mengelompokkan konten yang terkait dalam sebuah bagian.
+```<article>```: Menandai konten yang dapat berdiri sendiri, seperti posting blog atau berita.
+```<footer>```: Bagian bawah dari dokumen atau elemen tertentu.
+```<video>```: Digunakan untuk menampilkan video. Tag-tag ini membantu meningkatkan struktur dan semantik dalam dokumen HTML.
 
 3. Jelaskan perbedaan antara margin dan padding!
 
@@ -38,7 +38,7 @@ Aplikasi  : Book List
 
 = **a. Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.**
 
-- Didalam base.html, tambahkan tag <meta name="viewport"> agar halaman web dapat menyesuaikan ukuran dan perilaku perangkat mobile.
+- Didalam ```base.html```, tambahkan tag ```<meta name="viewport">``` agar halaman web dapat menyesuaikan ukuran dan perilaku perangkat mobile.
 ```html
 <head>
     {% block meta %}
