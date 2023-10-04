@@ -14,11 +14,11 @@ Kelas     : PBP C
 
 Aplikasi  : Book List
 
-1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya!
+### 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya!
 
 = Elemen Selector dalam CSS adalah metode pemilihan elemen berdasarkan nama elemen dalam dokumen HTML, seperti ```<p>```, ```<h1>```, atau ```<div>```. Manfaat utama dari penggunaan element selector adalah kemampuannya untuk menerapkan gaya secara konsisten pada semua elemen dengan nama yang sama di seluruh halaman web. Hal ini berguna ketika kita ingin mengaplikasikan gaya dasar ke seluruh elemen dengan nama yang sama tanpa perlu menambahkan kelas atau ID tambahan. Element selector sebaiknya digunakan ketika konsistensi tampilan elemen-elemen tersebut adalah prioritas utama dalam desain halaman web.
 
-2. Jelaskan HTML5 Tag yang kamu ketahui!
+### 2. Jelaskan HTML5 Tag yang kamu ketahui!
 
 = HTML5 adalah versi terbaru dari bahasa markup HTML yang menawarkan tag-tag baru untuk menggambarkan struktur dan makna dari konten dalam dokumen HTML. Beberapa tag HTML5 yang umum digunakan antara lain:
 
@@ -29,15 +29,15 @@ Aplikasi  : Book List
 - ```<footer>```: Bagian bawah dari dokumen atau elemen tertentu.
 - ```<video>```: Digunakan untuk menampilkan video. Tag-tag ini membantu meningkatkan struktur dan semantik dalam dokumen HTML.
 
-3. Jelaskan perbedaan antara margin dan padding!
+### 3. Jelaskan perbedaan antara margin dan padding!
 
 = Margin dan padding adalah dua properti CSS yang digunakan untuk mengatur ruang di sekitar elemen. Margin mengatur ruang di luar elemen dan mempengaruhi jarak antara elemen dengan elemen lainnya. Di sisi lain, padding mengatur ruang di dalam elemen dan mempengaruhi jarak antara konten elemen dan batas elemen tersebut. Ini berarti bahwa margin mempengaruhi ruang antara elemen dan elemen lain di sekitarnya, sedangkan padding mempengaruhi ruang antara konten elemen dan batas elemen itu sendiri.
 
-4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap! Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+### 4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap! Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
 
 = Bootstrap dan Tailwind CSS adalah dua alat yang berbeda untuk membangun tampilan situs web. Bootstrap menyediakan berbagai komponen yang sudah didesain dan siap pakai, sehingga memungkinkan kita membuat situs dengan cepat tanpa harus membuat banyak kode CSS kustom. Di sisi lain, Tailwind CSS memberikan banyak utilitas CSS yang lebih dasar yang memungkinkan kita membuat tampilan yang lebih unik sesuai kebutuhan. Ketika kita perlu membuat situs dengan cepat menggunakan komponen siap pakai, Bootstrap bisa menjadi pilihan yang baik. Sementara itu, jika kita ingin lebih banyak kontrol dan kreativitas dalam desain tampilan, Tailwind bisa lebih cocok. Pilihannya tergantung pada kebutuhan proyek masing-masing.
 
-5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 = **a. Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.**
 
