@@ -1,5 +1,5 @@
 # Tugas PBP
-Halo, namaku Rio dan ini adalah repository untuk Tugas Matakuliah Pemrograman Berbasis Platform (PBP). Berikut adalah detail pengembangan pada setiap tugas.
+Halo, namaku Rio dan ini adalah repository untuk tugas mata kuliah Pemrograman Berbasis Platform (PBP). Berikut adalah detail pengembangan pada setiap tugas.
 
 <details>
     <summary>
