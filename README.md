@@ -185,7 +185,7 @@ create_item:
 ```
 **b. Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan approach lain seperti menggunakan Card.**
 
-- Melakukan kustomisasi halaman daftar item ```main.html``` menjadi lebih berwarna dan menggunakan approach Card agar mirip dengan halaman login, register, dan create_item.
+- Melakukan kustomisasi halaman daftar item ```main.html``` menjadi lebih berwarna dan menggunakan approach Card agar mirip dengan halaman login, register, dan create_item. Selain halamannya, daftar item yang awalnya tabel juga diubah menjadi bentuk card.
 
 ```html
 {% extends 'base.html' %}
@@ -221,27 +221,23 @@ create_item:
 
                         <hr>
 
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Amount</th>
-                                        <th>Description</th>
-                                        <th>Date Added</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item in items %}
-                                    <tr>
-                                        <td>{{ item.name }}</td>
-                                        <td>{{ item.amount }}</td>
-                                        <td>{{ item.description }}</td>
-                                        <td>{{ item.date_added }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                        <div class="container mt-5">
+                            <div class="row">
+                                {% for item in items %}
+                                <div class="col-lg-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-header {% if forloop.last %}latest-item-header{% endif %}">
+                                            <h5 class="card-title">{{ item.name }}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Amount: {{ item.amount }}</p>
+                                            <p class="card-text">Description: {{ item.description }}</p>
+                                            <p class="card-text">Date Added: {{ item.date_added }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
                         </div>
 
                         <hr>
@@ -266,6 +262,62 @@ create_item:
     </div>
 {% endblock content %}
 ```
+
+**Bonus. Memberikan warna yang berbeda (teks atau background) pada baris terakhir dari item pada inventori anda menggunakan CSS.**
+
+- Membuat directory ```static/css``` dan membuat file ```styles.css``` pada root directory.
+```
+book_list/
+├── book_list/
+├── main/
+├── static/
+│   └── css/
+│       └── styles.css  <-- File CSS
+└── ...
+```
+
+- Membuat css class pada ```styles.css``` untuk menentukan style card item.
+```css
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.card-header {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-title {
+    margin-bottom: 0;
+}
+
+.latest-item-header {
+    background-color: #3399ff;
+    font-weight: bold;
+}
+```
+
+- Menambahkan link ke ```styles.css``` yang telah dibuat pada template ```base.html```.
+```html
+<head>
+    ...
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+```
+
+- Menambahkan konfigurasi pengaturan projek pada ```settings.py```.
+```python
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+```
+
+- Menjalankan ```python manage.py collectstatic``` untuk mengumpulkan semua static files pada satu direktori. Yang siap dideploy ke production server.
+
+- Menambahkan ```<div class="card-header {% if forloop.last %}latest-item-header{% endif %}">``` ke class ```card-header``` pada laman ```main.html``` agar last item yang dilooping mengikuti class ```latest-item-header``` pada ```styles.css```.
 
 </details>
 

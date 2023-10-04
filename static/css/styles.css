@@ -1,0 +1,19 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.card-header {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-title {
+    margin-bottom: 0;
+}
+
+.latest-item-header {
+    background-color: #3399ff;
+    font-weight: bold;
+}
