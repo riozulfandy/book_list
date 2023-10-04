@@ -337,25 +337,25 @@ Kelas     : PBP C
 
 Aplikasi  : Book List
 
-1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+### 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
 
 = UserCreationForm adalah formulir bawaan Django yang memudahkan pembuatan formulir pendaftaran pengguna dalam aplikasi web. Dengan formulir ini, pengguna baru dapat mendaftar dengan mudah di situs web Anda tanpa harus menulis kode dari awal. Kelebihan dari UserCreationForm adalah mudah digunakan (cepat menempatkan fitur pendaftaran pengguna aplikasi web tanpa perlu menulis kode form secara manual), validasi otomatis (memastikan pengguna memasukkan informasi yang valid saat mendaftar termasuk pemeriksaan ketersediaan alamat email dan validasi password), terintegrasi dengan fitur autentikasi Django seperti login dan logout, dan dapat dikustomisasi dengan membuat form sendiri yang menurunkan kelas UserCreationForm. Kekurangannya adalah hanya meminta informasi dasar seperti username, password, dan alamat email. Sehingga kurang fleksibel jika membutuhkan informasi tambahan atau langkah-langkah lain dalam pendaftaran. Selain itu, UserCreationForm juga memiliki beberapa pengaturan bawaan yang bisa jadi tidak sesuai dengan kebutuhan aplikasi sehingga perlu diubah agar mendapatkan kontrol yang lebih tinggi.
 
-2.  Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+### 2.  Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
 
 = Authentication (autentikasi) memverifikasi identitas pengguna atau layanan sebelum memberi mereka akses seperti permintaan username dan password, sementara Authorization (otorisasi) menentukan apa yang dapat mereka lakukan setelah mereka memiliki akses seperti perbedaan akses yang dimiliki oleh user dan admin pada suatu website. Contohnya pada aplikasi X (dulunya Twitter) dimana awalnya akan dilakukan autentikasi (permintaan username dan password) agar memperoleh akses akun yang dapat menggunakan berbagai fitur di X. Setelah masuk di X, akan dilakukan otorisasi untuk mengenali apa yang dapat kita lakukan, jika kita adalah user biasa fitur-fitur yang kita bisa gunakan akan berbeda dengan verified user (yang dapat diperoleh dengan membayar ke X). Keduanya penting karena autentikasi and otorisasi adalah dua proses utama keamanan informasi yang digunakan administrasi untuk melindungi sistem dan informasi, dimana autentikasi memverifikasi identitas pengguna sehingga identitas yang mengakses sistem dapat diketahui dan otorisasi menentukan apakah akses yang mereka punya benar sehingga tidak ada kesalahan dalam penggunaan sistem.
 
-3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+### 3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
 
 = Cookies adalah jenis data yang disimpan di sisi klien (biasanya di browser web) saat pengguna berinteraksi dengan situs web. Cookies digunakan untuk menyimpan potongan kecil informasi  yang dapat diakses oleh server web ketika pengguna kembali ke situs web. Mereka digunakan untuk berbagai tujuan, termasuk mengidentifikasi pengguna, menyimpan preferensi, dan melacak perilaku pengguna.
 
 Django menggunakan cookies untuk mengelola data sesi pengguna melalui modul yang disebut sessions (sesi). Django menggunakan cookie untuk mengelola data sesi pengguna dengan cara menghasilkan ID sesi unik untuk setiap pengguna yang disimpan dalam cookie di sisi klien saat pengguna mengakses situs web. Data sesi sebenarnya disimpan di server Django, bukan di cookie itu sendiri. Saat pengguna kembali ke situs web, Django mengidentifikasi pengguna berdasarkan ID sesi yang disimpan dalam cookie, dan kemudian mengambil data sesi yang sesuai dari server. Ini memungkinkan Django untuk menjaga status login pengguna, menyimpan preferensi, dan memberikan pengalaman yang personal kepada pengguna, semuanya dengan aman dan terlindungi dari potensi ancaman keamanan.
 
-4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+### 4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
 
 = Penggunaan cookies dalam pengembangan web bisa menjadi aman atau berisiko tergantung pada bagaimana mereka digunakan. Cookies adalah file kecil yang disimpan di perangkat pengguna saat mengakses situs web, dan mereka digunakan untuk menyimpan informasi seperti login, preferensi, atau keranjang belanja. Namun, ada risiko keamanan jika cookies disalahgunakan oleh penyerang. Misalnya, penyerang bisa mencuri data pribadi atau meretas akun pengguna jika cookies tidak diatur dengan baik. Oleh karena itu, untuk menjaga keamanan, pastikan menggunakan HTTPS, atur waktu kedaluwarsa yang tepat, enkripsi data sensitif, dan selalu ikuti peraturan privasi data yang berlaku.
 
-5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 = **a. Mengimplementasikan fungsi registrasi, login, dan logout.**
 
@@ -511,47 +511,47 @@ Kelas     : PBP C
 
 Aplikasi  : Book List
 
-1. Apa perbedaan antara form POST dan form GET dalam Django?
+### 1. Apa perbedaan antara form POST dan form GET dalam Django?
 
 = GET digunakan untuk membaca/mengambil data dari server web. GET mengembalikan kode status HTTP 200 (OK) jika data berhasil diambil dari server. Sementara POST digunakan untuk mengirim data (file, data form, dll) ke server. Jika pembuatan berhasil, ia mengembalikan kode status HTTP 201. Berikut beberapa perbedaannya:
 
 POST:
 
--Nilai variabel tidak ditampilkan di URL
+- Nilai variabel tidak ditampilkan di URL
 
--Lebih aman
+- Lebih aman
 
--Tidak dibatasi panjang string
+- Tidak dibatasi panjang string
 
--Pengambilan variabel dengan request.POST.get
+- Pengambilan variabel dengan request.POST.get
 
--Biasanya untuk input data melalui form
+- Biasanya untuk input data melalui form
 
--Digunakan untuk mengirim data-data penting seperti password
+- Digunakan untuk mengirim data-data penting seperti password
 
 GET:
 
--Nilai variabel ditampilkan di URL sehingga user dapat dengan mudah memasukkan nilai variabel baru
+- Nilai variabel ditampilkan di URL sehingga user dapat dengan mudah memasukkan nilai variabel baru
 
--Kurang aman
+- Kurang aman
 
--Dibatasi panjang string sampai 2047 karakter
+- Dibatasi panjang string sampai 2047 karakter
 
--Pengambilan variabel dengan request.POST.get
+- Pengambilan variabel dengan request.POST.get
 
--Biasanya untuk input data melalui link
+- Biasanya untuk input data melalui link
 
--Digunakan untuk mengirim data-data tidak penting
+- Digunakan untuk mengirim data-data tidak penting
 
-2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+### 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
 
 = XML adalah bahasa markup yang sangat fleksibel dan dapat digunakan untuk mendefinisikan struktur data yang kompleks. Ini menggunakan tag yang dapat disesuaikan oleh pengguna untuk mendefinisikan elemen data dan hierarki. JSON adalah format data ringkas yang berbasis teks dan memiliki struktur yang mirip dengan objek JavaScript. Ini terdiri dari pasangan nama-nilai (key-value pairs). HTML adalah bahasa markup yang digunakan untuk membuat halaman web. Ini memiliki struktur yang lebih terbatas dan dirancang untuk menampilkan konten dalam bentuk halaman web. Perbedaan utama diantaranya adalah XML digunakan untuk mendefinisikan struktur data yang kompleks, JSON digunakan untuk pertukaran data dalam format ringkas, sedangkan HTML digunakan untuk membuat halaman web dan menampilkan konten. 
 
-3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+### 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
 
 = JSON adalah format data yang ringkas dan mudah dibaca oleh programmer dalam bentuk (key-value pairs). JSON bagian integral dari JavaScript, sehingga memudahkan penggunaannya dalam lingkungan pengembangan web yang berbasis JavaScript. JSON juga mendukung struktur data yang bersarang (nested), yang memungkinkan representasi data yang kompleks dan hierarkis. Selain itu, format data JSON yang ringan dalam hal ukuran. Ini menghasilkan overhead yang lebih rendah dalam pertukaran data antara klien dan server, yang dapat meningkatkan kinerja dan kecepatan dalam aplikasi web.
 
-4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+### 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 = 
 
@@ -695,7 +695,7 @@ path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'), #Menambahkan varia
 path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), #Menambahkan variabel id karena dipakai sebagai parameter
 ```
 
-5. Mengakses kelima URL di nomor 4c menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+### 5. Mengakses kelima URL di nomor 4c menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
 
 =
 
@@ -721,68 +721,69 @@ Kelas     : PBP C
 
 Aplikasi  : Book List
 
-1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+### 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
-= -Pertama, membuat direktori baru pada lokal untuk menyimpan proyek Django ini. Didalam direktori tersebut akan dibuat virtual environment untuk mengisolasi proyek Django yang akan dibuat. Kemudian, membuat projek Django bernama book_list pada direktori tersebut serta menginstall dependenciesnya (library, framework, atau package).
+= 
+- Pertama, membuat direktori baru pada lokal untuk menyimpan proyek Django ini. Didalam direktori tersebut akan dibuat virtual environment untuk mengisolasi proyek Django yang akan dibuat. Kemudian, membuat projek Django bernama book_list pada direktori tersebut serta menginstall dependenciesnya (library, framework, atau package).
 
--Langkah kedua, membuat aplikasi main pada proyek Django tersebut.
+- Langkah kedua, membuat aplikasi main pada proyek Django tersebut.
 
--Langkah ketiga, melakukan routing pada proyek agar dapat menjalankan aplikasi main. Ini dilakukan dengan menambahkan main ke list installed app pada settings.py proyek book_list.
+- Langkah ketiga, melakukan routing pada proyek agar dapat menjalankan aplikasi main. Ini dilakukan dengan menambahkan main ke list installed app pada settings.py proyek book_list.
 
--Langkah keempat, membuat model pada aplikasi main dengan menambahkan kelas Item pada models.py dan memiliki atribut wajib name sebagai nama item dengan tipe CharField, amount sebagai jumlah item dengan tipe IntegerField, dan description sebagai deskripsi item dengan tipe TextField.
+- Langkah keempat, membuat model pada aplikasi main dengan menambahkan kelas Item pada models.py dan memiliki atribut wajib name sebagai nama item dengan tipe CharField, amount sebagai jumlah item dengan tipe IntegerField, dan description sebagai deskripsi item dengan tipe TextField.
 
--Langkah kelima, membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam template HTML main.html yang menampilkan nama aplikasi, nama, dan kelas. Pada langkah ini, dibuat fungsi show_main untuk melakukan render tampilan main.html pada request http yang diminta sesuai dengan dictionary context yang dibuat untuk ditampilkan pada views.py. Kemudian, template main.html akan dibuat dengan memasukkan key dari dictionary context pada views.py untuk menampilkan valuesnya.
+- Langkah kelima, membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam template HTML main.html yang menampilkan nama aplikasi, nama, dan kelas. Pada langkah ini, dibuat fungsi show_main untuk melakukan render tampilan main.html pada request http yang diminta sesuai dengan dictionary context yang dibuat untuk ditampilkan pada views.py. Kemudian, template main.html akan dibuat dengan memasukkan key dari dictionary context pada views.py untuk menampilkan valuesnya.
 
--Langkah keenam, membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py. Akan ditambahkan path kosong untuk langsung memanggil fungsi yang telah dibuat di views.py yaitu fungsi untuk menampilkan template main.html.
+- Langkah keenam, membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py. Akan ditambahkan path kosong untuk langsung memanggil fungsi yang telah dibuat di views.py yaitu fungsi untuk menampilkan template main.html.
 
--Langkah ketujuh, menambahkan urls yang dibuat pada aplikasi main pada proyek utama book_list dengan menambahkan path main/ pada urls.py proyek book list.
+- Langkah ketujuh, menambahkan urls yang dibuat pada aplikasi main pada proyek utama book_list dengan menambahkan path main/ pada urls.py proyek book list.
 
--Langkah kedelapan, melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat. Hal ini dilakukan dengan membuat repository pada github kemudian melakukan inisialisasi git pada direktori book_list yang pertama dibuat untuk membuat repository lokal dan menambahkan remote untuk menghubungkan repository lokal dan github. Kemudian, melakukan push pada repository github agar berisi proyek yang sudah dibuat. Setelah repository github berisi proyek book_list, menambahkan aplikasi baru pada Adaptable dan melakukan deployment berdasarkan repository yang sudah dibuat.
+- Langkah kedelapan, melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat. Hal ini dilakukan dengan membuat repository pada github kemudian melakukan inisialisasi git pada direktori book_list yang pertama dibuat untuk membuat repository lokal dan menambahkan remote untuk menghubungkan repository lokal dan github. Kemudian, melakukan push pada repository github agar berisi proyek yang sudah dibuat. Setelah repository github berisi proyek book_list, menambahkan aplikasi baru pada Adaptable dan melakukan deployment berdasarkan repository yang sudah dibuat.
 
--Langkah kesembilan, membuat sebuah README.md yang berisi tautan menuju aplikasi Adaptable yang sudah di-deploy, serta menjawab beberapa pertanyaan.
+- Langkah kesembilan, membuat sebuah README.md yang berisi tautan menuju aplikasi Adaptable yang sudah di-deploy, serta menjawab beberapa pertanyaan.
 
-2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html!
+### 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html!
 
 =![image](https://github.com/riozulfandy/book_list/assets/119402060/8ef346ab-3cf5-46e1-87a6-66520fbbb33a)
 
 
-3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
+### 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 
 = Alasan kita membutuhkan virtual enviroment adalah karena dengan virtual enviroment yang kita buat pada setiap proyek, proyek tersebut dapat kita isolasikan sehingga memiliki dependencies (library, framework, atau package) yang mereka butuhkan sesuai versinya masing-masing. Kita hanya memfokuskan satu proyek pada virtual enviroment yang kita buat sehingga dapat lebih rapih dalam manajemen dependencies proyek. Kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment, namun kita sulit menerapkan dependencies yang kita inginkan pada aplikasi ini jika kita memiliki proyek lain pada lokal yang memiliki dependencies yang berbeda.
 
-4. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
+### 4. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
 
 =
-MVC (Model, View, Controller):
+**MVC (Model, View, Controller):**
 
--Model adalah komponen utama arsitektur ini dan mengelola data, logika, serta batasan aplikasi lainnya.
+- Model adalah komponen utama arsitektur ini dan mengelola data, logika, serta batasan aplikasi lainnya.
 
--View berkaitan dengan bagaimana data akan ditampilkan kepada pengguna dan menyediakan berbagai komponen representasi data.
+- View berkaitan dengan bagaimana data akan ditampilkan kepada pengguna dan menyediakan berbagai komponen representasi data.
 
--Controller adalah inti dari logika aplikasi yang memanipulasi Model dan merender tampilan dengan bertindak sebagai jembatan antara keduanya.
+- Controller adalah inti dari logika aplikasi yang memanipulasi Model dan merender tampilan dengan bertindak sebagai jembatan antara keduanya.
 
-MVT (Model, View, Template)
+**MVT (Model, View, Template)**
 
--Model yang mirip dengan MVC ini bertindak sebagai antarmuka untuk data Anda dan pada dasarnya merupakan struktur logis di balik seluruh aplikasi web yang diwakili oleh database seperti MySql, PostgreSQL.
+- Model yang mirip dengan MVC ini bertindak sebagai antarmuka untuk data Anda dan pada dasarnya merupakan struktur logis di balik seluruh aplikasi web yang diwakili oleh database seperti MySql, PostgreSQL.
 
--View menjalankan logika penggunaan website dan berinteraksi dengan Model serta merender template. Ia menerima permintaan HTTP dan kemudian mengembalikan respons HTTP.
+- View menjalankan logika penggunaan website dan berinteraksi dengan Model serta merender template. Ia menerima permintaan HTTP dan kemudian mengembalikan respons HTTP.
 
--Template adalah komponen yang membuat MVT berbeda dari MVC. Template bertindak sebagai lapisan presentasi dan pada dasarnya adalah kode HTML yang merender data. Konten dalam file-file ini dapat bersifat statis atau dinamis.
+- Template adalah komponen yang membuat MVT berbeda dari MVC. Template bertindak sebagai lapisan presentasi dan pada dasarnya adalah kode HTML yang merender data. Konten dalam file-file ini dapat bersifat statis atau dinamis.
 
-MVVM (Model Viem ViewModel)
+**MVVM (Model Viem ViewModel)**
 
--Model: Lapisan ini bertanggung jawab atas abstraksi sumber data. Model dan ViewModel bekerja sama untuk mendapatkan dan menyimpan data.
+- Model: Lapisan ini bertanggung jawab atas abstraksi sumber data. Model dan ViewModel bekerja sama untuk mendapatkan dan menyimpan data.
 
--View: Tujuan dari lapisan ini adalah untuk menginformasikan ViewModel tentang tindakan pengguna. Lapisan ini mengamati ViewModel dan tidak mengandung logika aplikasi apa pun.
+- View: Tujuan dari lapisan ini adalah untuk menginformasikan ViewModel tentang tindakan pengguna. Lapisan ini mengamati ViewModel dan tidak mengandung logika aplikasi apa pun.
 
--ViewModel: Ini memperlihatkan aliran data yang relevan dengan Tampilan. Selain itu, ini berfungsi sebagai penghubung antara Model dan Tampilan.
+- ViewModel: Ini memperlihatkan aliran data yang relevan dengan Tampilan. Selain itu, ini berfungsi sebagai penghubung antara Model dan Tampilan.
 
 Perbedaaan utamanya adalah bagaimana mereka mengatur dan memisahkan tanggung jawab komponen dalam arsitektur aplikasi:
 
--MVC adalah pola yang banyak digunakan yang dengan jelas memisahkan Model, View, dan Controller. Controller bertindak sebagai jembatan antara Model dan View.
+- MVC adalah pola yang banyak digunakan yang dengan jelas memisahkan Model, View, dan Controller. Controller bertindak sebagai jembatan antara Model dan View.
 
--MVT adalah variasi dari MVC yang digunakan dalam kerangka web Django. Ini menggantikan Controller dengan Template, yang lebih fokus pada logika presentasi data dalam format tampilan HTML.
+- MVT adalah variasi dari MVC yang digunakan dalam kerangka web Django. Ini menggantikan Controller dengan Template, yang lebih fokus pada logika presentasi data dalam format tampilan HTML.
 
--MVVM adalah pola yang mendominasi pengembangan aplikasi berbasis data. ViewModel mengambil peran yang lebih kuat dalam mengelola UI dan memastikan bahwa View selalu mencerminkan data yang benar dari Model. Hal ini memungkinkan pemisahan yang kuat antara logika aplikasi (Model), lapisan presentasi (View), dan logika presentasi (ViewModel).
+- MVVM adalah pola yang mendominasi pengembangan aplikasi berbasis data. ViewModel mengambil peran yang lebih kuat dalam mengelola UI dan memastikan bahwa View selalu mencerminkan data yang benar dari Model. Hal ini memungkinkan pemisahan yang kuat antara logika aplikasi (Model), lapisan presentasi (View), dan logika presentasi (ViewModel).
 
 </details>
