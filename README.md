@@ -1,5 +1,11 @@
+# Pemrograman Berbasis Platform
+Halo, namaku Rio dan ini adalah repository untuk tugas mata kuliah Pemrograman Berbasis Platform (PBP).
+
+# Link Aplikasi
+http://muhammad-mariozulfandy-tugas.pbp.cs.ui.ac.id/
+
 # Tugas PBP
-Halo, namaku Rio dan ini adalah repository untuk tugas mata kuliah Pemrograman Berbasis Platform (PBP). Berikut adalah detail pengembangan pada setiap tugas.
+Berikut adalah detail pengembangan pada setiap tugas.
 
 <details>
     <summary>
@@ -49,6 +55,7 @@ Jadi, menurut saya Fetch API lebih baik karena menggunakan sintaks yang lebih mo
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 **a. AJAX GET**
+
 Mengosongkan card-card item dan menambahkan id:
 ```html
 <div class="container mt-5">
@@ -102,6 +109,7 @@ Memanggil fungsi ```refreshItems``` setiap kali masuk ke halaman ```main.html```
 ```refreshItems()```
 
 **b. AJAX POST**
+
 Membuat modal pada halaman ```main.html```:
 ```html
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -178,6 +186,7 @@ Memanggil fungsi ```addItem``` saat button untuk menambahkan item pada modal di 
 document.getElementById("button_add").onclick = addItem
 ```
 **c. Melakukan perintah collectstatic**
+
 Menjalankan command ```python manage.py collectstatic``` pada env untuk mengumpulkan file static dari setiap aplikasi dalam suatu folder yang dapat dengan mudah disajikan pada produksi.
 </details>
 
