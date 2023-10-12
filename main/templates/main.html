@@ -1,74 +1,136 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-20">
-                <div class="card w-100">
-                    <div class="card-header bg-primary text-white">
-                        <h2 class="mb-0">Book List</h2>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-20">
+            <div class="card w-100">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Book List</h2>
+                </div>
+                <div class="card-body">
+                    <div class="user-info">
+                        <h5>Username:</h5>
+                        <p>{{ Username }}</p>
+
+                        <h5>Nama:</h5>
+                        <p>{{ Nama }}</p>
+
+                        <h5>Kelas:</h5>
+                        <p>{{ Kelas }}</p>
+
+                        <h5>Nama Aplikasi:</h5>
+                        <p>{{ Aplikasi }}</p>
                     </div>
-                    <div class="card-body">
-                        <div class="user-info">
-                            <h5>Username:</h5>
-                            <p>{{ Username }}</p>
 
-                            <h5>Nama:</h5>
-                            <p>{{ Nama }}</p>
+                    <hr>
 
-                            <h5>Kelas:</h5>
-                            <p>{{ Kelas }}</p>
+                    <div class="item-count">
+                        <h5 class="text-info">Kamu menyimpan {{ jumlah_items }} item pada aplikasi ini.</h5>
+                    </div>
 
-                            <h5>Nama Aplikasi:</h5>
-                            <p>{{ Aplikasi }}</p>
-                        </div>
+                    <hr>
 
-                        <hr>
+                    <div class="container mt-5">
+                        <div class="row" id="item_card"></div>
+                    </div>
+                    
+                    <hr>
 
-                        <div class="item-count">
-                            <h5 class="text-info">Kamu menyimpan {{ jumlah_items }} item pada aplikasi ini.</h5>
-                        </div>
+                    <h5 class="text-success">Sesi terakhir login: {{ last_login }}</h5>
 
-                        <hr>
+                    <hr>
 
-                        <div class="container mt-5">
-                            <div class="row">
-                                {% for item in items %}
-                                <div class="col-lg-4 mb-3">
-                                    <div class="card">
-                                        <div class="card-header {% if forloop.last %}latest-item-header{% endif %}">
-                                            <h5 class="card-title">{{ item.name }}</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text">Amount: {{ item.amount }}</p>
-                                            <p class="card-text">Description: {{ item.description }}</p>
-                                            <p class="card-text">Date Added: {{ item.date_added }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
 
-                        <hr>
+                    <hr>
 
-                        <h5 class="text-success">Sesi terakhir login: {{ last_login }}</h5>
+                    <div class="button-container">
+                        <a href="{% url 'main:create_item' %}" class="btn btn-success">
+                            <i class="fas fa-plus"></i> Add New Item
+                        </a>
 
-                        <hr>
-
-                        <div class="button-container">
-                            <a href="{% url 'main:create_item' %}" class="btn btn-success">
-                                <i class="fas fa-plus"></i> Add New Item
-                            </a>
-
-                            <a href="{% url 'main:logout' %}" class="btn btn-danger">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
-                        </div>
+                        <a href="{% url 'main:logout' %}" class="btn btn-danger">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+    async function refreshItems() {
+        document.getElementById("item_card").innerHTML = ""
+        const items = await getItems()
+        let htmlString = ``
+        items.forEach((item, index, array) => {
+            var isLastItem = index === array.length - 1 ? 'latest-item-header' : '';
+            htmlString += `\n
+                                <div class="col-lg-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-header ${isLastItem}">
+                                            <h5 class="card-title">${item.fields.name}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Amount: ${item.fields.amount}</p>
+                                            <p class="card-text">Description: ${item.fields.description}</p>
+                                            <p class="card-text">Date Added: ${item.fields.date_added}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ` 
+        })
+        
+        document.getElementById("item_card").innerHTML = htmlString
+    }
+    function addItem() {
+        fetch("{% url 'main:add_item_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItems)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    document.getElementById("button_add").onclick = addItem
+    refreshItems()
+</script>
 {% endblock content %}
