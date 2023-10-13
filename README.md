@@ -85,7 +85,7 @@ async function refreshItems() {
         const items = await getItems()
         let htmlString = ``
         items.forEach((item, index, array) => {
-            var isLastItem = index === array.length - 1 ? 'latest-item-header' : '';
+            var isLastItem = index === array.length - 1 ? 'bg-primary' : '';
             htmlString += `\n
                                 <div class="col-lg-4 mb-3">
                                     <div class="card">
