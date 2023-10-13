@@ -56,7 +56,7 @@ Jadi, menurut saya Fetch API lebih baik karena menggunakan sintaks yang lebih mo
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 **a. AJAX GET**
 
-Mengosongkan card-card item dan menambahkan id:
+- Mengosongkan card-card item dan menambahkan id:
 ```html
 <div class="container mt-5">
     <div class="row" id="item_card"></div>
@@ -68,17 +68,17 @@ def get_item_json(request):
     items = Item.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', items))
 ```
-Menambahkan path ```urspattern``` pada ```urls.py```:
+- Menambahkan path ```urlspattern``` pada ```urls.py```:
 ```py
-    path('get-item/', get_item_json, name='get_item_json'),
+path('get-item/', get_item_json, name='get_item_json'),
 ```
-Menambahkan tag ```<script></script>``` pada ```main.html``` dan menambahkannya dengan fungsi get:
+- Menambahkan tag ```<script></script>``` pada ```main.html``` untuk menggunakan AJAX pada halaman dan membuat fungsi get untuk mengambil data Item:
 ```js
 async function getItems() {
     return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
 }
 ```
-Menambahkan fungsi ```refreshItems``` pada script yang berfungsi untuk mengupdate item setiap kali item bertambah dan juga mengeset item agar dapat masuk kedalam web dalam bentuk card:
+- Menambahkan fungsi ```refreshItems``` pada script yang berfungsi untuk mengupdate item setiap kali item bertambah dan juga mengatur item agar dapat masuk kedalam web dalam bentuk card:
 ```js
 async function refreshItems() {
         document.getElementById("item_card").innerHTML = ""
@@ -100,17 +100,16 @@ async function refreshItems() {
                                     </div>
                                 </div>
                             ` 
-        })
-        
+        })       
         document.getElementById("item_card").innerHTML = htmlString
     }
 ```
-Memanggil fungsi ```refreshItems``` setiap kali masuk ke halaman ```main.html``` dengan menambahkan pada script:
+- Memanggil fungsi ```refreshItems``` setiap kali masuk ke halaman ```main.html``` dengan menambahkan pada script:
 ```refreshItems()```
 
 **b. AJAX POST**
 
-Membuat modal pada halaman ```main.html```:
+- Membuat modal pada halaman ```main.html```:
 ```html
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -144,11 +143,11 @@ Membuat modal pada halaman ```main.html```:
     </div>
 </div>
 ```
-Menambahkan button pada ```main.html``` untuk menampilkan modal:
+- Menambahkan button pada ```main.html``` untuk menampilkan modal:
 ```html
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
 ```
-Membuat fungsi ```add_item_ajax``` pada ```views.py```:
+- Membuat fungsi ```add_item_ajax``` pada ```views.py```:
 ```py
 @csrf_exempt
 def add_item_ajax(request):
@@ -165,11 +164,11 @@ def add_item_ajax(request):
 
     return HttpResponseNotFound()
 ```
-Menambahkan path fungsi ```add_item_ajax``` pada urlspattern ```urls.py```:
+- Menambahkan path fungsi ```add_item_ajax``` pada urlspattern ```urls.py```:
 ```py
 path('create-ajax/', add_item_ajax, name='add_item_ajax')
 ```
-Membuat fungsi ```addItem``` pada script untuk menghubungkan ke fungsi ```add_item_ajax``` dengan form modal:
+- Membuat fungsi ```addItem``` pada script untuk menghubungkan ke fungsi ```add_item_ajax``` dengan form modal:
 ```js
 function addItem() {
         fetch("{% url 'main:add_item_ajax' %}", {
@@ -181,7 +180,7 @@ function addItem() {
         return false
 }
 ```
-Memanggil fungsi ```addItem``` saat button untuk menambahkan item pada modal di klik:
+- Memanggil fungsi ```addItem``` saat button untuk menambahkan item pada modal diklik:
 ```js
 document.getElementById("button_add").onclick = addItem
 ```
