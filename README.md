@@ -1,5 +1,5 @@
 # Pemrograman Berbasis Platform
-Halo, namaku Rio dan ini adalah repository untuk tugas mata kuliah Pemrograman Berbasis Platform (PBP).
+Halo, namaku Rio dan ini adalah repository untuk tugas Web App pada mata kuliah Pemrograman Berbasis Platform (PBP).
 
 # Link Aplikasi
 http://muhammad-mariozulfandy-tugas.pbp.cs.ui.ac.id/
