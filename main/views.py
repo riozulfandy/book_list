@@ -6,6 +6,7 @@ from django.urls import reverse
 from main.models import Item
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -44,6 +45,7 @@ def show_xml(request):
     data = Item.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 def show_json(request):
+    print(request.user)
     data = Item.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 def show_json_for_user(request):
@@ -128,11 +130,15 @@ def create_product_flutter(request):
 def create_user_flutter(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        form = UserCreationForm(username=data["username"], password=data["password1"], password2=data["password2"])
-        if form.is_valid():
-            form.save()
+        if User.objects.filter(username=data["username"]).exists():
+            return JsonResponse({"status": "error", "messages":"Username telah digunakan!"}, status=401)
+        elif len(data["password"]) < 8:
+            return JsonResponse({"status": "error", "messages":"Password minimal 8 karakter!"}, status=401)
+        elif data["password"] != data["password2"]:
+            return JsonResponse({"status": "error", "messages":"Password dan Konfirmasi Password tidak sama!"}, status=401)
+        else :
+            user = User.objects.create_user(username=data["username"], password=data["password"])
+            user.save()
             return JsonResponse({"status": "success"}, status=200)
-        else:
-            return JsonResponse({"status": "error"}, status=401)
     else:
-        return JsonResponse({"status": "error"}, status=401)
+        return JsonResponse({"status": "error", "messages":"Terdapat kesalahan pengisian, silahkan coba lagi!"}, status=401)
