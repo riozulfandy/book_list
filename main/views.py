@@ -45,7 +45,6 @@ def show_xml(request):
     data = Item.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 def show_json(request):
-    print(request.user)
     data = Item.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 def show_json_for_user(request):
@@ -71,6 +70,7 @@ def register(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
+
 @csrf_exempt
 def login_user(request):
     if request.method == 'POST':
@@ -86,6 +86,8 @@ def login_user(request):
             messages.info(request, 'Sorry, incorrect username or password. Please try again.')
     context = {}
     return render(request, 'login.html', context)
+
+
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))
@@ -110,39 +112,3 @@ def add_item_ajax(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
-
-@csrf_exempt
-def create_product_flutter(request):
-    if request.method == 'POST':
-        
-        data = json.loads(request.body)
-
-        new_product = Item.objects.create(
-            user = request.user,
-            name = data["name"],
-            amount = int(data["amount"]),
-            description = data["description"]
-        )
-
-        new_product.save()
-
-        return JsonResponse({"status": "success"}, status=200)
-    else:
-        return JsonResponse({"status": "error"}, status=401)
-    
-@csrf_exempt
-def create_user_flutter(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        if User.objects.filter(username=data["username"]).exists():
-            return JsonResponse({"status": "error", "messages":"Username telah digunakan!"}, status=401)
-        elif len(data["password"]) < 8:
-            return JsonResponse({"status": "error", "messages":"Password minimal 8 karakter!"}, status=401)
-        elif data["password"] != data["password2"]:
-            return JsonResponse({"status": "error", "messages":"Password dan Konfirmasi Password tidak sama!"}, status=401)
-        else :
-            user = User.objects.create_user(username=data["username"], password=data["password"])
-            user.save()
-            return JsonResponse({"status": "success"}, status=200)
-    else:
-        return JsonResponse({"status": "error", "messages":"Terdapat kesalahan pengisian, silahkan coba lagi!"}, status=401)
