@@ -57,9 +57,7 @@ def logout(request):
 @csrf_exempt
 def create_product_flutter(request):
     if request.method == 'POST':
-        
         data = json.loads(request.body)
-
         new_product = Item.objects.create(
             user = request.user,
             name = data["name"],
