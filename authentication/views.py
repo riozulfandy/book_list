@@ -59,7 +59,7 @@ def create_product_flutter(request):
     if request.method == 'POST':
         data = json.loads(request.body)
         new_product = Item.objects.create(
-            user = request.user,
+            user_id = int(data["user"]),
             name = data["name"],
             amount = int(data["amount"]),
             description = data["description"]
