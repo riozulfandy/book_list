@@ -73,7 +73,6 @@ def register(request):
 
 @csrf_exempt
 def login_user(request):
-    user = User.objects.all()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -85,7 +84,7 @@ def login_user(request):
             return response
         else:
             messages.info(request, 'Sorry, incorrect username or password. Please try again.')
-    context = {'user': user}
+    context = {}
     return render(request, 'login.html', context)
 def logout_user(request):
     logout(request)
